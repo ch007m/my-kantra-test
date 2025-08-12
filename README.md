@@ -20,10 +20,6 @@ podman rm kantra-download
 mv darwin-kantra kantra
 ./kantra version
 ```
-Next, copy the [coolstore-rule](coolstore-rule) to the rulesets folder
-```shell
-cp -r coolstore-rule rulesets
-```
 
 To test the rules or a rule, run the [testrunner](https://github.com/konveyor/kantra/blob/main/docs/testrunner.md#running-tests)
 ```shell
@@ -35,7 +31,7 @@ To analyze the coolstore project, execute this command and open the generated re
 ./kantra analyze --run-local --skip-static-report --enable-default-rulesets=false \
   -i ./tests/data/coolstore \
   -o ./output \
-  --rules ./rulesets/coolstore-rule/rule.yaml \
+  --rules ./coolstore-rule/rule.yaml \
   --overwrite  
 ```
 Check the ouput.log generated

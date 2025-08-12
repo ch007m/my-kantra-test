@@ -1,4 +1,4 @@
-rulesPath: ../rulesets/coolstore-rule/rule.yaml
+rulesPath: ../coolstore-rule/rule.yaml
 providers:
   - name: java
     dataPath: ./data/coolstore
