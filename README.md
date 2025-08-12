@@ -6,6 +6,7 @@ To play with a new rule and test it, it is needed first to download, install kan
 
 ```shell
 set VERSION v0.8.0-alpha.2
+set VERSION latest
 
 cd distro
 rm -rf {rulesets,static-report}
@@ -16,7 +17,6 @@ podman cp $ID:/usr/local/etc/maven.default.index .
 podman cp $ID:/usr/bin/fernflower.jar .
 podman cp $ID:/jdtls .
 podman cp $ID:/usr/local/static-report .
-podman cp $ID:/opt/rulesets .
 podman rm kantra-download
 mv darwin-kantra kantra
 ./kantra version
