@@ -1,0 +1,11 @@
+rulesPath: ../rulesets/sample/rule.yaml
+providers:
+  - name: java
+    dataPath: ./data/coolstore
+tests:
+  - ruleID: coolstore-rule-00001
+    testCases:
+      - name: coolstore-rule-00001-test-01
+        hasIncidents:
+          exactly: 2
+          messageMatches: "ProductService cannot be used with the @Inject annotation in version 2 of the coolstore application"
