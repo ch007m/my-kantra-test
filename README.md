@@ -17,24 +17,29 @@ podman rm kantra-download
 mv darwin-kantra kantra
 ./kantra version
 ```
+Copy the [coolstore-rule](coolstore-rule) to the rulesets folder
+```shell
+cp -r coolstore-rule rulesets
+```
 
 To test the rules or a rule, run the [testrunner](https://github.com/konveyor/kantra/blob/main/docs/testrunner.md#running-tests)
 ```shell
 RUN_LOCAL=1 ./kantra test ./tests/rule.test.yaml
 ```
 
-To analyze a sample project, execute this command and open the generated report
-```shell
- ./kantra analyze -i ../samples/coolstore/ -o  ../generated/ --overwrite -t quarkus
-```
-
-To test the new rule
+To analyze the coolstore project, execute this command and open the generated report
 ```shell
 ./kantra analyze --run-local --skip-static-report --enable-default-rulesets=false \
   -i ./tests/data/coolstore \
   -o ./output \
-  --rules ./rulesets/sample/rule.yaml \
-  --overwrite
+  --rules ./rulesets/coolstore-rule/rule.yaml \
+  --overwrite  
 ```
+Check the ouput.log generated
+```shell
+time="2025-08-12T15:46:24+02:00" level=info msg="language server log" line="!MESSAGE KONVEYOR_LOG: got: 2 search matches for com.redhat.coolstore.service.ProductService location 12 matches2" provider=java
+time="2025-08-12T15:46:24+02:00" level=info msg="Symbols retrieved" cap=referenced conditionInfo="{\"Referenced\":{\"Pattern\":\"com.redhat.coolstore.service.ProductService\",\"Location\":\"FIELD\",\"annotated\":{\"pattern\":\"javax.inject.Inject\"},\"Filepaths\":null}}" provider=java symbols=2
+```
+
 
 

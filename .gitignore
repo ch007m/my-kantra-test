@@ -1,6 +1,12 @@
 rulesets
 jdtls
 static-report
+output
+.metadata/
+
+tests/data/coolstore/.classpath
+tests/data/coolstore/.project
+tests/data/coolstore/.settings
 
 fernflower.jar
 kantra
