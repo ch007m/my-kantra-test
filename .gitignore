@@ -2,6 +2,12 @@ distro
 output
 .metadata/
 
-rules/*/tests/data/.classpath
-rules/*/tests/data/.project
-rules/*/tests/data/.settings
+rules/coolstore/tests/data/.classpath
+rules/coolstore/tests/data/.project
+rules/coolstore/tests/data/.settings
+rules/coolstore/tests/data/.vscode
+
+rules/*/tests/data/*/.classpath
+rules/*/tests/data/*/.project
+rules/*/tests/data/*/.settings
+rules/*/tests/data/*/.vscode

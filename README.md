@@ -8,7 +8,7 @@ To play with rulesets, add a new and test it, it is needed first to download and
 set VERSION v0.8.0-alpha.2
 #set VERSION latest
 
-cd distro
+pushd distro
 rm -rf {rulesets,static-report}
 mkdir rulesets static-report
 set ID $(podman create --name kantra-download quay.io/konveyor/kantra:$VERSION)
@@ -17,9 +17,11 @@ podman cp $ID:/usr/local/etc/maven.default.index .
 podman cp $ID:/usr/bin/fernflower.jar .
 podman cp $ID:/jdtls .
 podman cp $ID:/usr/local/static-report .
+podman cp $ID:/opt/rulesets .
 podman rm kantra-download
 mv darwin-kantra kantra
 ./kantra version
+popd
 ```
 **Remark**: Due to a bug discovered since release `v0.8.0-alpha.2`, the `rulesets` folder must be empty - https://github.com/konveyor/kantra/issues/525
 
@@ -36,5 +38,18 @@ To analyze the `coolstore` rule project, execute this command where you pass the
 ./scripts/analyze-rule.sh sb-to-quarkus 000-springboot-parent-pom-to-quarkus "Replace the Spring Parent POM with Quarkus BOM"
 ```
 
+## Useful commands
+
+Analyze a data project using the rulesets packaged part of the kantra distribution
+```shell
+pushd distro
+./kantra analyze --run-local \
+  -i ../rules/sb-to-quarkus/tests/data/sb-web \
+  -o ../output \
+  --overwrite
+popd
+
+open ./output/static-report/index.html
+```
 
 
