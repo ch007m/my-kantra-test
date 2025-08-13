@@ -34,7 +34,7 @@ To analyze by example the `coolstore` project, execute this command and open the
   -i ../rules/coolstore/tests/data \
   -o ../output \
   --rules ../rules/coolstore/rule.yaml \
-  --overwrite  
+  --overwrite
 ```
 Check the `ouput.log` generated
 ```shell
