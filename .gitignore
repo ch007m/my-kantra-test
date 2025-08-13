@@ -1,13 +1,7 @@
-rulesets
-jdtls
-static-report
+distro
 output
 .metadata/
 
-tests/data/coolstore/.classpath
-tests/data/coolstore/.project
-tests/data/coolstore/.settings
-
-fernflower.jar
-kantra
-maven.default.index
+rules/*/tests/data/.classpath
+rules/*/tests/data/.project
+rules/*/tests/data/.settings

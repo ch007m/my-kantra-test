@@ -1,7 +1,7 @@
-rulesPath: ../coolstore-rule/rule.yaml
+rulesPath: ../rule.yaml
 providers:
   - name: java
-    dataPath: ./data/coolstore
+    dataPath: ./data
 tests:
   - ruleID: coolstore-rule-00001
     testCases:

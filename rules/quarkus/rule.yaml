@@ -1,0 +1,30 @@
+# The rule ID. Must be unique.
+- ruleID: quarkus-rule-00001
+  # The category. This indicates if the change MUST be done (mandatory), CAN be done (optional),
+  # or if it can't be decided (potential).
+  category: mandatory
+  # An approximate calculation of the effort it would take to fix the issue in the code
+  effort: 1
+  # A set of labels, including source and target technologies and tags
+  labels:
+    - konveyor.io/target=quarkus
+    - quarkus
+  # The triggering condition:
+  when:
+    # This will be a java condition
+    java.referenced:
+      # Match on the ProductService class...
+      pattern: com.redhat.coolstore.service.ProductService
+      # ...when it's used in a field declaration...
+      location: FIELD
+      # ...and also when it's annotated with @Inject.
+      annotated:
+        pattern: javax.inject.Inject
+  # A short description of the issue.
+  description: Do not use ProductService with Inject
+  # A more descriptive and long explanation of the issue, potentially with code snippets and examples of solving.
+  message: "ProductService cannot be used with the @Inject annotation in version 2 of the coolstore application"
+  # An array of links with more information about the issue
+  links:
+    - title: 'Add some link here'
+      url: https://www.example.com
