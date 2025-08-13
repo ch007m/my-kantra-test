@@ -1,5 +1,5 @@
 # The rule ID. Must be unique.
-- ruleID: coolstore-rule-00001
+- ruleID: 000-coolstore-rule
   # The category. This indicates if the change MUST be done (mandatory), CAN be done (optional),
   # or if it can't be decided (potential).
   category: mandatory

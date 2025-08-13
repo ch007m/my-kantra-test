@@ -25,22 +25,14 @@ mv darwin-kantra kantra
 
 To test a new rule created, run the [testrunner](https://github.com/konveyor/kantra/blob/main/docs/testrunner.md#running-tests) and pass as parameter the path of the rule created
 ```shell
-RUN_LOCAL=1 ./kantra test ../rules/coolstore/tests/rule.test.yaml
+pushd distro
+RUN_LOCAL=1 ./kantra test ../rules/coolstore/tests/000-coolstore-rule.test.yaml
+popd
 ```
 
-To analyze by example the `coolstore` project, execute this command and open the generated report
+To analyze the `coolstore` rule project, execute this command where you pass the name fo the rule folder like the text to search about within the generated report
 ```shell
-./kantra analyze --run-local --skip-static-report --enable-default-rulesets=false \
-  -i ../rules/coolstore/tests/data \
-  -o ../output \
-  --rules ../rules/coolstore/rule.yaml \
-  --overwrite
-```
-Check the `ouput.log` generated
-```shell
-cat ../output/analysis.log | grep "com.redhat.coolstore.service.ProductService"
-time="2025-08-12T15:46:24+02:00" level=info msg="language server log" line="!MESSAGE KONVEYOR_LOG: got: 2 search matches for com.redhat.coolstore.service.ProductService location 12 matches2" provider=java
-time="2025-08-12T15:46:24+02:00" level=info msg="Symbols retrieved" cap=referenced conditionInfo="{\"Referenced\":{\"Pattern\":\"com.redhat.coolstore.service.ProductService\",\"Location\":\"FIELD\",\"annotated\":{\"pattern\":\"javax.inject.Inject\"},\"Filepaths\":null}}" provider=java symbols=2
+./scripts/analyze-rule.sh coolstore 000-coolstore-rule "ProductService"
 ```
 
 
