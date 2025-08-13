@@ -4,7 +4,9 @@ RULE_ID=${2}
 TEXT_TO_SEARCH=${3}
 
 pushd distro
-rm ../output/analysis.log
+rm ../output/output.json
+rm ../output/output.yaml
+rm ../output/output.json
 
 echo "##################################"
 echo "Testing the rule: $RULE_FOLDER_NAME"
@@ -25,8 +27,8 @@ echo "####################################################################"
 echo "Text to search within the generated report: $TEXT_TO_SEARCH"
 echo "####################################################################"
 cat ../output/output.json | jq \
-  --arg ruleId $RULE_ID \
-  --arg textToSearch $TEXT_TO_SEARCH \
+  --arg ruleId "$RULE_ID" \
+  --arg textToSearch "$TEXT_TO_SEARCH" \
   '.[].violations[$ruleId].incidents | .[] | select(.message | contains($textToSearch))'
 
 popd

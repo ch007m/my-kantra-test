@@ -33,6 +33,7 @@ popd
 To analyze the `coolstore` rule project, execute this command where you pass the name fo the rule folder like the text to search about within the generated report
 ```shell
 ./scripts/analyze-rule.sh coolstore 000-coolstore-rule "ProductService"
+./scripts/analyze-rule.sh sb-to-quarkus 000-springboot-parent-pom-to-quarkus "Replace the Spring Parent POM with Quarkus BOM"
 ```
 
 

@@ -1,0 +1,11 @@
+rulesPath: ../000-springboot-parent-pom-to-quarkus.yaml
+providers:
+  - name: java
+    dataPath: ./data/sb-web
+tests:
+  - ruleID: 000-springboot-parent-pom-to-quarkus
+    testCases:
+      - name: 000-springboot-parent-pom-to-quarkus-01
+        hasIncidents:
+          exactly: 1
+          messageMatches: "Replace the Spring Parent POM with Quarkus BOM"
