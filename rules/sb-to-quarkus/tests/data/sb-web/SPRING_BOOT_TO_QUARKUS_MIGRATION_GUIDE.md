@@ -293,6 +293,16 @@ The data key in the controller must match the variable name in the template.
 
 ## 10. Migration Process & Order
 
+### Optional: Restore Original Spring Boot Application
+
+If you want to practice the migration from scratch or reset to the original Spring Boot state:
+
+```bash
+git reset --hard HEAD
+```
+
+⚠️ **Warning**: This command will permanently discard all uncommitted changes. Only use if you want to start the migration from the beginning.
+
 **Critical**: Follow this exact order to avoid compilation issues:
 
 1. **Dependencies First**: Update `pom.xml` completely before touching Java files
