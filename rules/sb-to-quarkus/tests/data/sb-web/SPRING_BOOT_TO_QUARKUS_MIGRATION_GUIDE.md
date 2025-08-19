@@ -270,6 +270,15 @@ quarkus.application.name=Bootstrap Quarkus
 
 Without this dependency, `TemplateInstance` objects will not be automatically rendered to HTML, causing tests and endpoints to return object references instead of rendered content.
 
+## 8.1 Template Variable Mapping
+
+When migrating from Thymeleaf to Qute, ensure the controller data mapping matches the template variables:
+
+**Controller**: `return index.data("message", "Hello from " + appName + "!");`
+**Template**: `{message}` (not `{appName}`)
+
+The data key in the controller must match the variable name in the template.
+
 ## 9. Migration Checklist
 
 - [ ] Update Maven dependencies from Spring Boot to Quarkus
@@ -282,18 +291,40 @@ Without this dependency, `TemplateInstance` objects will not be automatically re
 - [ ] Update configuration properties from `spring.*` to `quarkus.*`
 - [ ] Test endpoint functionality with RestAssured
 
-## 10. Troubleshooting
+## 10. Migration Process & Order
+
+**Critical**: Follow this exact order to avoid compilation issues:
+
+1. **Dependencies First**: Update `pom.xml` completely before touching Java files
+2. **Main Class**: Convert application entry point
+3. **Controllers**: Migrate Spring MVC to JAX-RS
+4. **Templates**: Convert Thymeleaf to Qute syntax  
+5. **Tests**: Update test annotations and framework
+6. **Configuration**: Update properties files
+7. **Build & Validate**: Run `mvn clean install` to verify
+
+**Note**: IDE will show import errors during migration - this is expected until Maven resolves new dependencies.
+
+## 11. Troubleshooting
 
 ### Template Not Rendering
 **Problem**: Endpoint returns `TemplateInstance` object instead of HTML
 **Solution**: Add `quarkus-resteasy-reactive-qute` dependency
 
-### Test Compilation Errors
+### Test Compilation Errors  
 **Problem**: `SpringBootTest cannot be resolved to a type`
 **Solution**: Replace with `@QuarkusTest` and update imports
 
 ### Template Syntax Errors
-**Problem**: Thymeleaf expressions not working
+**Problem**: Thymeleaf expressions not working  
 **Solution**: Convert `th:text="${var}"` to `{var}` for Qute
+
+### IDE Import Errors During Migration
+**Problem**: `io.quarkus cannot be resolved` errors during migration
+**Solution**: Expected behavior - complete all file changes, then run `mvn clean install`
+
+### Template Variable Mismatch
+**Problem**: Template shows variable names instead of values
+**Solution**: Ensure controller `.data("key", value)` matches template `{key}`
 
 This guide provides a comprehensive overview of the key changes required for Spring Boot to Quarkus migration based on real-world migration experience.
